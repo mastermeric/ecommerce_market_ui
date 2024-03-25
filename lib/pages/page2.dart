@@ -14,7 +14,7 @@ class SecondPage extends StatefulWidget {
 
 // ProductResponseModel türünden liste döndüren async method.
 Future<List<ProductResponseModel>> getList() async {
-  var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/todos"));
+  var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
 
   if(response.statusCode == 200) {
     List<dynamic> data = json.decode(response.body); 
@@ -39,36 +39,35 @@ class _SecondPageState extends State<SecondPage> {
   void initState() {    
     super.initState();
 
-    getList().then((value) { 
-      setState(() {
-        datalar.addAll(value);
-      }); 
-    });    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Dinamik veri Sayfası"),),
-      body: Center(
-        child: ListView.builder(itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Container(
-                    height: 20,
-                    color: Colors.grey[200],
-                    child: Text("${datalar[index].id} : ${datalar[index].title}")),
-                )
-              ],
-            ),
-          );
+      body: FutureBuilder<List<ProductResponseModel>>(
+        future: getList(), 
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } 
+          if(snapshot.hasError) { 
+            return Center(child: Text("ERROR : ${snapshot.error}"));
+          } 
+          else {
+
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+              ProductResponseModel post = snapshot.data![index] ;              
+
+              return ListTile(
+                title: Text(post.title!),
+                subtitle: Text(post.body!),
+              );
+            },);
+          }
         },),
-      ),
     );
   }
 }
