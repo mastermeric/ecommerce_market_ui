@@ -1,24 +1,54 @@
 import 'package:ecommerce_market_ui/widgets/CustomNavigationBar.dart';
+import 'package:ecommerce_market_ui/widgets/go_router_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_strategy/url_strategy.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void>  main() async {
+
+  // URL kullanmak icin ideal.. # leri kaldırıyor :)
+  setPathUrlStrategy();
+  
+  runApp(const ProviderScope(child:  MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({super.key});
+
+  @override
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+class _MyAppState extends ConsumerState<MyApp> {
+  
+  
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(      
+
+     @override
+  void initState() {
+    print("Main -> InitState() stage -1 ");
+    super.initState();    
+  }
+
+    final goRouter2 = ref.watch(goRouterProvider);
+
+    return MaterialApp.router(      
       title: 'Flutter Demo',
       theme: ThemeData(        
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
+      // go_router : Provider ile ---------------------
+      routeInformationParser: goRouter2.routeInformationParser,
+      routeInformationProvider: goRouter2.routeInformationProvider,
+      routerDelegate: goRouter2.routerDelegate,
+      //-----------------------------------------------
+      //      
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
