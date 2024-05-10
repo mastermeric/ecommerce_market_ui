@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({super.key});
+class DiscountPage extends StatefulWidget {
+  const DiscountPage({super.key});
 
   @override
-  State<SecondPage> createState() => _SecondPageState();
+  State<DiscountPage> createState() => _DiscountPageState();
 }
 
 // ProductResponseModel türünden liste döndüren async method.
 Future<List<ProductResponseModel>> getList() async {
-  var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
+  //var response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
+  var response = await http.get(Uri.parse("http://localhost:5157/ECommerce/GetAllProducts"));  
+
 
   if(response.statusCode == 200) {
     List<dynamic> data = json.decode(response.body); 
@@ -29,7 +31,7 @@ Future<List<ProductResponseModel>> getList() async {
 
 final datalar = [];
 
-class _SecondPageState extends State<SecondPage> {
+class _DiscountPageState extends State<DiscountPage> {
 
   // Fonksiyonlar ve algoritmik işlemler bu alana yazacağız... -----------------
   

@@ -1,8 +1,9 @@
 import 'package:ecommerce_market_ui/Globals/Providers.dart';
 import 'package:ecommerce_market_ui/pages/Errror.dart';
-import 'package:ecommerce_market_ui/pages/page1.dart';
-import 'package:ecommerce_market_ui/pages/page2.dart';
-import 'package:ecommerce_market_ui/pages/page3.dart';
+import 'package:ecommerce_market_ui/pages/admin.dart';
+import 'package:ecommerce_market_ui/pages/anasayfa.dart';
+import 'package:ecommerce_market_ui/pages/indirimSayfasi.dart';
+import 'package:ecommerce_market_ui/pages/iletisim.dart';
 import 'package:ecommerce_market_ui/widgets/CustomAnimatedBottomNavigationBarForGoRouter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,28 +17,36 @@ final rootNavKey = GlobalKey<NavigatorState>();
     return 
     [
         GoRoute(
-            path: '/FirstPage',
-            name: "FirstPage",
+            path: '/Anasayfa',
+            name: "Anasayfa",
               pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const FirstPage(),
+                child: const Anasayfa(),
               ),
           ),
           GoRoute(
-            path: '/SecondPage',
-            name: "SecondPage",
+            path: '/DiscountPage',
+            name: "DiscountPage",
              pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const SecondPage(),
+                child: const DiscountPage(),
               ),
           ),
           GoRoute(
-            path: '/ThirdPage',
-            name: "ThirdPage",
+            path: '/ContactPage',
+            name: "ContactPage",
              pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const ThirdPage(),
+                child: const ContactPage(),
               ),            
+          ),
+                  GoRoute(
+            path: '/AdminPanel',
+            name: "AdminPanel",
+              pageBuilder: (context, state) => NoTransitionPage(
+                key: state.pageKey,
+                child: const AdminPanel(),
+              ),
           ),
         ];    
   }
@@ -49,9 +58,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProvider);
 
   return GoRouter(
+
     debugLogDiagnostics: true, // MericY : PROD da ?  //Forwards diagnostic messages to the dart:developer log() API
-    initialLocation: "/FirstPage",
-    navigatorKey: rootNavKey,
+    initialLocation: "/Anasayfa",
+    navigatorKey: rootNavKey,    
     
     // Provider dinlemede..
     refreshListenable: authState,  

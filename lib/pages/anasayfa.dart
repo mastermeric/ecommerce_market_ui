@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({super.key});
+class Anasayfa extends StatefulWidget {
+  const Anasayfa({super.key});
 
   @override
-  State<FirstPage> createState() => _FirstPageState();
+  State<Anasayfa> createState() => _AnasayfaState();
 }
 
-class _FirstPageState extends State<FirstPage> {
+class _AnasayfaState extends State<Anasayfa> {
   @override
   Widget build(BuildContext context) {
 

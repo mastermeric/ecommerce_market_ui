@@ -18,8 +18,8 @@ class _CustomAnimatedBottomNavigationBarForGoRouterState extends State<CustomAni
   final iconList = <IconData>[
     Icons.brightness_3,
     Icons.brightness_5,
-    Icons.brightness_4,
-    Icons.brightness_6,
+    // Icons.brightness_4,
+    // Icons.brightness_6,
     //Icons.brightness_7,
   ];
 
@@ -27,19 +27,24 @@ class _CustomAnimatedBottomNavigationBarForGoRouterState extends State<CustomAni
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(child: widget.child , height: MediaQuery.of(context).size.height, ), //myPages(_bottomNavIndex),
+      body: SizedBox(height: MediaQuery.of(context).size.height,child: widget.child , ), //myPages(_bottomNavIndex),
+
+      //============================  Ortadaki buyuk Button ============================
       floatingActionButton: FloatingActionButton(        
-        child: Icon(Icons.add),
-        shape: CircleBorder(),
+        shape: const CircleBorder(),
         
         onPressed: () {           
-          setState(() =>_bottomNavIndex = 2);
+          setState(() =>_bottomNavIndex = 1);
           _onTap(_bottomNavIndex);
-          debugPrint("Floting button Hit  :::: " + _bottomNavIndex.toString());
+          debugPrint("Floting button Hit  :::: $_bottomNavIndex");
           
-         },
+         },        
+        child: const Icon(Icons.add),
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      //================================================================================
+
+
       bottomNavigationBar: AnimatedBottomNavigationBar(
         icons: iconList,
         activeIndex: _bottomNavIndex,
@@ -64,17 +69,17 @@ class _CustomAnimatedBottomNavigationBarForGoRouterState extends State<CustomAni
 
   void _onTap(int index) {
     
-    debugPrint("Index :::: " + index.toString());
+    debugPrint("Index :::: $index");
 
     switch (index) {      
       case 0:
-        context.goNamed("FirstPage");
+        context.goNamed("Anasayfa");
         break;
       case 1:
-        context.goNamed("SecondPage");
+        context.goNamed("DiscountPage");
         break;
       case 2:
-        context.goNamed("ThirdPage");
+        context.goNamed("ContactPage");
         break;
       default:
     }

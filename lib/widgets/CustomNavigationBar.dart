@@ -1,6 +1,6 @@
-import 'package:ecommerce_market_ui/pages/page1.dart';
-import 'package:ecommerce_market_ui/pages/page2.dart';
-import 'package:ecommerce_market_ui/pages/page3.dart';
+import 'package:ecommerce_market_ui/pages/anasayfa.dart';
+import 'package:ecommerce_market_ui/pages/indirimSayfasi.dart';
+import 'package:ecommerce_market_ui/pages/iletisim.dart';
 import 'package:flutter/material.dart';
 
 class CustomNavigationBar extends StatefulWidget {
@@ -16,9 +16,9 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   // Burası Navigate edilecek sayfalarımız oluyor...
   List myPages = [
-    const FirstPage(),
-    const SecondPage(),
-    const ThirdPage(),
+    const Anasayfa(),
+    const DiscountPage(),
+    const ContactPage(),
   ];
 
 
