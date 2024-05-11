@@ -34,7 +34,8 @@ class _MyAppState extends ConsumerState<MyApp> {
 
     final goRouter2 = ref.watch(goRouterProvider);
 
-    return MaterialApp.router(      
+    return MaterialApp.router(
+      themeMode: ThemeMode.dark,
       title: 'Flutter Demo',
       theme: ThemeData(        
 
@@ -63,7 +64,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
 
 
   @override

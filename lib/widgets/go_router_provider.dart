@@ -1,5 +1,6 @@
 import 'package:ecommerce_market_ui/Globals/Providers.dart';
 import 'package:ecommerce_market_ui/pages/Errror.dart';
+import 'package:ecommerce_market_ui/pages/add-page.dart';
 import 'package:ecommerce_market_ui/pages/admin.dart';
 import 'package:ecommerce_market_ui/pages/anasayfa.dart';
 import 'package:ecommerce_market_ui/pages/indirimSayfasi.dart';
@@ -40,12 +41,20 @@ final rootNavKey = GlobalKey<NavigatorState>();
                 child: const ContactPage(),
               ),            
           ),
-                  GoRoute(
+          GoRoute(
             path: '/AdminPanel',
             name: "AdminPanel",
               pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
                 child: const AdminPanel(),
+              ),
+          ),
+          GoRoute(
+            path: '/AddPage',
+            name: "AddPage",
+              pageBuilder: (context, state) => NoTransitionPage(
+                key: state.pageKey,
+                child: const AddPage(),
               ),
           ),
         ];    

@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class AdminPanel extends StatelessWidget {
+class AdminPanel extends StatefulWidget {
   const AdminPanel({super.key});
 
   @override
+  State<AdminPanel> createState() => _AdminPanelState();
+}
+
+class _AdminPanelState extends State<AdminPanel> {
+  @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        Row(children: [Text("ADMIN PAKEL...")],),
-        Row(children: [Text("ADMIN ISLEMLERI.....")],)
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Admin Panel"),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          context.go("AddPage");
+        },
+        label: const Text("Ekle"),
+        ),
     );
   }
 }
