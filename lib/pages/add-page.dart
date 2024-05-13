@@ -42,9 +42,15 @@ class _AddPageState extends State<AddPage> {
 
   void submitDate() {
     // step-1 : Get data from form
-    var title = titleController.text;
-    var desc = descController.text;
-    var body = "";
+    final title = titleController.text;
+    final desc = descController.text;
+    final body = { 
+          "prname": "string",
+          "prdesc": "string",
+          "prprice": "555",
+          "prdiscount": "5",
+          "prupdatedate": "2024-05-12T04:18:47.200Z"
+        };
     // step-2 : Submit data to Server
     // step-3 : show result success/fail
   }
