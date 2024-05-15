@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ecommerce_market_ui/models/product_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 
 class DiscountPage extends StatefulWidget {
@@ -63,9 +64,27 @@ class _DiscountPageState extends State<DiscountPage> {
               itemBuilder: (context, index) {
               ProductResponseModel post = snapshot.data![index] ;              
 
-              return ListTile(
-                title: Text(post.title!),
-                subtitle: Text(post.body!),
+              return Container(
+                color: Colors.grey[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    children: [
+                      Text(post.prname!),
+                      const SizedBox(width: 10,),
+                      Text(post.prdesc!),
+                      const SizedBox(width: 10,),
+                      Text(DateFormat('yyyy-MM-dd hh:mm').format(post.prupdatedate!)),
+                      const SizedBox(width: 10,),
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Image.memory(base64Decode(post.imageData!)),
+                      )
+                    ],
+                                    
+                  ),
+                ),
               );
             },);
           }
