@@ -59,11 +59,44 @@ class _DiscountPageState extends State<DiscountPage> {
           } 
           else {
 
+            return GridView.builder(
+              itemCount: snapshot.data!.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), 
+              itemBuilder: (context, index) {
+              ProductResponseModel post = snapshot.data![index] ;              
+              return Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  color: Colors.grey[200],
+                  child: Column(
+                    children: [
+                      Text(post.prname! , style: const TextStyle(fontWeight: FontWeight.bold , fontSize: 20),),
+                      const SizedBox(width: 10,),
+                      Text("\" ${post.prdesc!} \""),
+                      const SizedBox(width: 10,),
+                      Text("Ekleme Tarihi :${DateFormat('yyyy-MM-dd hh:mm').format(post.prupdatedate!)}"),                      
+                      const SizedBox(width: 10,),
+                      Text("Fiyat :${post.prprice!}" ,style: const TextStyle( color: Colors.red, fontWeight: FontWeight.bold )),
+                      const SizedBox(width: 10,),
+                      post.imageData!.isNotEmpty ? 
+                      SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Image.memory(base64Decode(post.imageData!)),
+                      ) : const Text("No-Image")
+                    ],
+                  ),              
+                ),
+              );
+            }
+              
+              );
+
+          /*
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
               ProductResponseModel post = snapshot.data![index] ;              
-
               return Container(
                 color: Colors.grey[200],
                 child: Padding(
@@ -74,19 +107,22 @@ class _DiscountPageState extends State<DiscountPage> {
                       const SizedBox(width: 10,),
                       Text(post.prdesc!),
                       const SizedBox(width: 10,),
-                      Text(DateFormat('yyyy-MM-dd hh:mm').format(post.prupdatedate!)),
+                      Text(DateFormat('yyyy-MM-dd hh:mm').format(post.prupdatedate!)),                      
                       const SizedBox(width: 10,),
+                      post.imageData!.isNotEmpty ? 
                       SizedBox(
                         width: 50,
                         height: 50,
                         child: Image.memory(base64Decode(post.imageData!)),
-                      )
+                      ) : const Text("No-Image")
                     ],
                                     
                   ),
                 ),
               );
-            },);
+            }
+            ,);
+            */
           }
         },),
     );
