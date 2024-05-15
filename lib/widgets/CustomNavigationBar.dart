@@ -16,7 +16,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   // Burası Navigate edilecek sayfalarımız oluyor...
   List myPages = [
-    const Anasayfa(),
+    const AnaSayfa(),
     const DiscountPage(),
     const ContactPage(),
   ];

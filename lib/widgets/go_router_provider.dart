@@ -22,7 +22,7 @@ final rootNavKey = GlobalKey<NavigatorState>();
             name: "Anasayfa",
               pageBuilder: (context, state) => NoTransitionPage(
                 key: state.pageKey,
-                child: const Anasayfa(),
+                child: const AnaSayfa(),
               ),
           ),
           GoRoute(
