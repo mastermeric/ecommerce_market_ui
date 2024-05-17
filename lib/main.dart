@@ -1,4 +1,4 @@
-import 'package:ecommerce_market_ui/widgets/CustomNavigationBar.dart';
+import 'package:ecommerce_market_ui/Globals/MyGlobalVals.dart';
 import 'package:ecommerce_market_ui/widgets/go_router_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,11 +26,43 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
 
+
+      MyDeviceHeight = MediaQuery.of(context).size.height;
+    MyDeviceWidth = MediaQuery.of(context).size.width;
+
+    if (0 < MyDeviceWidth && MyDeviceWidth <= 400) {
+      MyResponsiveDeviceWidth = MyDeviceWidth * 0.98;
+      MyResponsiveDeviceWidthForPopup = MyDeviceWidth * 0.95;
+    }
+    if (400 < MyDeviceWidth && MyDeviceWidth <= 900) {
+      MyResponsiveDeviceWidth = MyDeviceWidth * 0.95;
+      MyResponsiveDeviceWidthForPopup = MyDeviceWidth * 0.90;
+    }
+    if (900 < MyDeviceWidth && MyDeviceWidth <= 1200) {
+      MyResponsiveDeviceWidth = MyDeviceWidth * 0.80;
+      MyResponsiveDeviceWidthForPopup = MyDeviceWidth * 0.40;
+    }
+    if (1200 < MyDeviceWidth && MyDeviceWidth <= 1900) {
+      MyResponsiveDeviceWidth = MyDeviceWidth * 0.70;
+      MyResponsiveDeviceWidthForPopup = MyDeviceWidth * 0.35;
+    }
+    if (1900 < MyDeviceWidth) {
+      MyResponsiveDeviceWidth = MyDeviceWidth * 0.60;
+      MyResponsiveDeviceWidthForPopup = MyDeviceWidth * 0.25;
+    }
+
+
+    // Bilgi amaçlı ..
+    print("Main -> MyDeviceWidth : $MyDeviceWidth");
+    print("Main -> MyResponsiveDeviceWidth : $MyResponsiveDeviceWidth");
+    print("Main -> MyResponsiveDeviceWidthForPopup : $MyResponsiveDeviceWidthForPopup");
+
+
      @override
-  void initState() {
-    print("Main -> InitState() stage -1 ");
-    super.initState();    
-  }
+    void initState() {
+      print("Main -> InitState() stage -1 ");
+      super.initState();    
+    }
 
     final goRouter2 = ref.watch(goRouterProvider);
 
@@ -50,39 +82,6 @@ class _MyAppState extends ConsumerState<MyApp> {
       //-----------------------------------------------
       //      
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
- 
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final int _counter = 0;
-
-
-  @override
-  Widget build(BuildContext context) {    
-
-   
-
-    return Scaffold(
-      bottomNavigationBar: const CustomNavigationBar(), // Burada bizim NavBar olacak..,
-      appBar: AppBar(        
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        
-        title: Text(widget.title),
-      ),
-      // Boş bir body ..
-      body: const Center(
-        child: Column(),
-      ),
     );
   }
 }
