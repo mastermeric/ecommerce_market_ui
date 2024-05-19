@@ -20,11 +20,14 @@ Future<List<ProductResponseModel>> getList() async {
 
 
   if(response.statusCode == 200) {
-    List<dynamic> data = json.decode(response.body); 
 
-    debugPrint(data.toString());
+    // Internetten gelen JSON (string) veriler dinamik bir Listeye çevrilir (Tip belli değil)
+    List<dynamic> dinamikListe  = json.decode(response.body); 
 
-    return data.map((tempJsonRes) => ProductResponseModel.fromJson(tempJsonRes)).toList();
+    // Dinamik liste ProductResponseModel tipindeki listeye çevrilir
+    List<ProductResponseModel> productListesi = dinamikListe.map((item) => ProductResponseModel.fromJson(item)).toList();
+    
+    return productListesi;
   } else {
     throw Exception("HATA oluştu...");
   }
